@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
   try {
-    const response = await fetch('https://api.quotable.io/random');
+    const response = await fetch('https://zenquotes.io/api/random');
     const data = await response.json();
 
     res.status(200).json({

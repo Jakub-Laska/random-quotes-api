@@ -1,7 +1,8 @@
-import quotes from '../quotes.json' assert { type: 'json' };
+import quotes from '../quotes.json' with { type: 'json' };
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate')
 
   let availableQuotes = quotes;
 

@@ -9,6 +9,6 @@ export default async function handler(req, res) {
       source: "quotable.io"
     });
   } catch (error) {
-    res.status(500).json({ error: "Nie udało się pobrać cytatu" });
+    res.status(500).json({ error: "Unable to fetch the quote" });
   }
 }

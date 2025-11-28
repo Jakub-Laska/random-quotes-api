@@ -12,7 +12,6 @@ Perfect for projects, widgets, examples, and demos.
 
 ### Features
 - Edge caching (`s-maxage=3600, stale-while-revalidate`)
-- In portfolio demo the button adds `?t=${Date.now()}` → fresh quote every click
 - Lightweight middleware → rate limit for the timestamp param (30/min per IP)
 - CORS enabled
 - Deployed on Vercel, zero config
@@ -35,7 +34,7 @@ source indicates where the quote was retrieved from:
 ```
 
 ### Example Use
-To fetch a random quote from the API and display it inside your page, you use this JavaScript snippet:
+Use the following JavaScript snippet to fetch a random quote from the API and display it on your page. The `?t=${Date.now()}` query parameter is used to bypass browser caching:
 
 ```js
 document.getElementById('btn')..addEventListener('click', async () => {

@@ -12,7 +12,6 @@ Perfect for projects, widgets, examples, and demos.
 
 ### Features
 - Edge caching (`s-maxage=3600, stale-while-revalidate`)
-- Lightweight middleware → rate limit for the timestamp param (30/min per IP)
 - CORS enabled
 - Deployed on Vercel, zero config
 

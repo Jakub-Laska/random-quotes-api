@@ -1,14 +1,33 @@
-export default async function handler(req, res) {
-  try {
-    const response = await fetch('https://zenquotes.io/api/random');
-    const data = await response.json();
+import quotes from '../quotes.json' assert { type: 'json' };
 
-    res.status(200).json({
-      quote: data.content,
-      author: data.author,
-      source: "quotable.io"
+export default async function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  let availableQuotes = quotes;
+
+  if (availableQuotes.length > 0) {
+    const randomQuote = availableQuotes[Math.floor(Math.random() * availableQuotes.length)];
+    return res.status(200).json({
+      quote: randomQuote.text,
+      author: randomQuote.author,
+      source: "local"
+    });
+  }
+
+  try {
+    const resp = await fetch('https://zenquotes.io/api/random');
+    const [data] = await resp.json();
+
+    return res.status(200).json({
+      quote: data.q,
+      author: data.a,
+      source: 'zenquotes'
     });
   } catch (error) {
-    res.status(500).json({ error: "Unable to fetch the quote" });
+    return res.status(200).json({
+      quote: "Where the spirit does not work with the hand, there is no art.",
+      author: "Leonardo da Vinci",
+      source: "fallback"
+    });
   }
 }
